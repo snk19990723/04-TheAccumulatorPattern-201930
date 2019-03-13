@@ -9,8 +9,8 @@ Additionally, it emphasizes that you must
 before you can implement a solution to the problem in Python.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
-         Aaron Wilkin, their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Aaron Wilkin, their colleagues, and Deng Zou.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -26,11 +26,13 @@ import rosegraphics as rg
 #        -- AFTER the loop?
 # -----------------------------------------------------------------------------
 def main():
+    # left_most_point = rg.Point(400, 50)
+    window1 = rg.RoseWindow(600, 350)
     """ Calls the   TEST   functions in this module. """
-    run_test_draw_parallel_lines()
-    run_test_draw_lines()
-
-
+    # run_test_draw_parallel_lines()
+    # run_test_draw_lines()
+    # draw_parallel_lines(7, left_most_point, 100, window1)
+    draw_lines(2, rg.Point(10,150), window1)
 def run_test_draw_parallel_lines():
     """ Tests the   draw_parallel_lines  function. """
     print()
@@ -96,7 +98,7 @@ def draw_parallel_lines(n, point, length, window):
       :type window: rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -109,6 +111,16 @@ def draw_parallel_lines(n, point, length, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ###########################################################################
     # -------------------------------------------------------------------------
+
+
+
+    for k in range(n):
+        startpoint = rg.Point(point.x,point.y+30*k)
+        endpoint = rg.Point(point.x+length, point.y+30*k)
+        line=rg.Line(startpoint,endpoint)
+        line.attach_to(window)
+    window.render()
+
 
 
 def run_test_draw_lines():
@@ -174,8 +186,13 @@ def draw_lines(n, point, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ###########################################################################
     # -------------------------------------------------------------------------
-
-
+    for k in range(1,n+1):
+        startpoint = rg.Point(point.x,point.y)
+        endpoint = rg.Point(point.x+100, point.y+100*k)
+        line=rg.Line(startpoint,endpoint)
+        line.attach_to(window)
+    window.render()
+    window.close_on_mouse_click()
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
